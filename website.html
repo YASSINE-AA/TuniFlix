@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TuniFlix | Premium Streaming</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#FF2D20',
+                        dark: '#000000',
+                        light: '#F5F5F7',
+                        gray: {
+                            light: '#E5E5E5',
+                            medium: '#86868B',
+                            dark: '#1D1D1F'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['SF Pro Display', 'SF Pro', 'Helvetica Neue', 'Arial', 'sans-serif'],
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 1s ease-in',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-15px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @font-face {
+            font-family: 'SF Pro';
+            src: url('https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-regular-webfont.woff2') format('woff2');
+        }
+        
+        @font-face {
+            font-family: 'SF Pro Display';
+            src: url('https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-semibold-webfont.woff2') format('woff2');
+            font-weight: 600;
+        }
+        
+        body {
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(90deg, #FF2D20 0%, #FF453A 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.6) 50%, rgba(0,0,0,0.9) 100%);
+        }
+        
+        .glass-card {
+            background: rgba(29, 29, 31, 0.72);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: #FF2D20;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover:after {
+            width: 100%;
+        }
+    </style>
+</head>
+<body class="bg-dark text-light font-sans">
+    <!-- Minimal Navbar -->
+    <nav class="fixed w-full z-50 px-6 py-5 lg:px-12 flex justify-between items-center bg-dark/80 backdrop-blur-md">
+        <div class="text-3xl font-semibold text-white">TuniFlix</div>
+        <div class="hidden lg:flex space-x-8 items-center">
+            <a href="#" class="nav-link text-gray-medium hover:text-light transition-colors duration-300 text-sm">Home</a>
+        
+        </div>
+        <button class="lg:hidden text-gray-light">
+            <i class="fas fa-bars text-xl"></i>
+        </button>
+    </nav>
+
+    <!-- Hero Section - Apple Style -->
+    <section class="relative h-screen flex items-center justify-center bg-[url('https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80')] bg-cover bg-center hero-gradient">
+        <div class="absolute inset-0 bg-gradient-to-t from-dark to-dark/60"></div>
+        <div class="container mx-auto px-6 z-10 text-center animate-fade-in">
+            <h1 class="text-5xl md:text-7xl lg:text-8xl font-semibold mb-6 leading-tight tracking-tight">
+                Unlimited entertainment.<br>
+                <span class="gradient-text">Ad Free, Forever.</span>
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-medium mb-10 max-w-3xl mx-auto">
+                The best of global and local content. Stream or download. Designed for you.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#" class="bg-primary hover:bg-[#FF453A] text-white px-8 py-4 rounded-full font-medium text-lg flex items-center justify-center gap-2 transition-colors duration-300">
+                    <i class="fas fa-download"></i> Download
+                </a>
+             
+            </div>
+        </div>
+        
+        <!-- Apple-style scroll indicator -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <div class="w-6 h-10 border-2 border-gray-medium rounded-full flex justify-center">
+                <div class="w-1 h-2 bg-gray-medium rounded-full mt-2"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section - Minimal Apple Style -->
+    <section class="py-32 px-6 lg:px-12 bg-dark">
+        <div class="container mx-auto max-w-5xl">
+            <h2 class="text-4xl md:text-5xl lg:text-6xl font-semibold text-center mb-20 tracking-tight">
+                Why <span class="gradient-text">TuniFlix</span> stands out.
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Feature 1 -->
+              
+                <!-- Feature 2 -->
+                <div class="glass-card p-8 rounded-2xl transition-all duration-500 hover:bg-gray-dark/60">
+                    <div class="text-primary text-4xl mb-6">
+                        <i class="fas fa-feather"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-4">Lightweight</h3>
+                    <p class="text-gray-medium text-sm leading-relaxed">
+                        Lightweight client with storage to continue where you left off, and save user profiles.
+                    </p>
+                </div>
+                
+                <!-- Feature 3 -->
+                <div class="glass-card p-8 rounded-2xl transition-all duration-500 hover:bg-gray-dark/60">
+                    <div class="text-primary text-4xl mb-6">
+                        <i class="fas fa-cloud-arrow-down"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-4">Ad Free Playback</h3>
+                    <p class="text-gray-medium text-sm leading-relaxed">
+                        Ad free Playback for all Movies and TV Shows.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download Section - Apple Style -->
+    <section class="py-32 px-6 lg:px-12 bg-black">
+        <div class="container mx-auto max-w-6xl">
+            <div class="flex flex-col lg:flex-row items-center justify-between gap-32">
+                <div>  <h2 class="text-4xl md:text-5xl font-semibold mb-8 tracking-tight">
+                        Start Watching<br>
+                        <span class="gradient-text">No Interruptions.</span>
+                    </h2>
+                    <p class="text-gray-medium text-lg mb-10 leading-relaxed">
+                        Tired of ads? Watch with no interruptions now!
+                    </p></div>
+                  
+                    <div class="flex flex-wrap gap-4">
+                      
+                        <a href="#" class="bg-transparent hover:bg-gray-dark/50 text-white px-6 py-3 rounded-full font-medium flex items-center gap-3 transition-colors duration-300 border border-gray-medium">
+                            <i class="fab fa-windows text-2xl"></i>
+                            <div class="text-left">
+                                <div class="text-xs">Download for</div>
+                                <div class="text-lg">Windows</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                
+        </div>
+    </section>
+
+    <!-- Apple-style Footer -->
+    <footer class="py-20 px-6 lg:px-12 bg-black border-t border-gray-dark/50">
+        <div class="container mx-auto max-w-6xl">
+       
+            
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-medium text-sm mb-4 md:mb-0">
+                        Made with &lt;3 by Overflow
+                    </p>
+                    
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
