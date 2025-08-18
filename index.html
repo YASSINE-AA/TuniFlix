@@ -26,6 +26,8 @@
                     animation: {
                         'fade-in': 'fadeIn 1s ease-in',
                         'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 6s infinite',
+                        'slide-up': 'slideUp 1s ease-out forwards',
                     },
                     keyframes: {
                         fadeIn: {
@@ -35,6 +37,10 @@
                         float: {
                             '0%, 100%': { transform: 'translateY(0)' },
                             '50%': { transform: 'translateY(-15px)' },
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(100%) scale(0.8)', opacity: '0' },
+                            '100%': { transform: 'translateY(0) scale(1)', opacity: '1' },
                         }
                     }
                 }
@@ -55,6 +61,7 @@
         
         body {
             -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
         }
         
         .gradient-text {
@@ -93,6 +100,56 @@
         .nav-link:hover:after {
             width: 100%;
         }
+        
+        .app-showcase {
+            box-shadow: 0 50px 100px -20px rgba(255, 45, 32, 0.3);
+            border-radius: 2rem;
+            overflow: hidden;
+            transform-origin: center bottom;
+            animation: slideUp 1s ease-out 0.3s forwards;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .app-showcase::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            height: 40px;
+            background: rgba(255, 45, 32, 0.2);
+            filter: blur(20px);
+            z-index: -1;
+            border-radius: 50%;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .glow {
+            filter: drop-shadow(0 0 15px rgba(255, 45, 32, 0.5));
+        }
+        
+        .app-section {
+            position: relative;
+            overflow: hidden;
+            padding-bottom: 100px;
+        }
+        
+        .app-bg {
+            position: absolute;
+            width: 150%;
+            height: 150%;
+            top: -25%;
+            left: -25%;
+            background: radial-gradient(circle, rgba(255,45,32,0.1) 0%, rgba(0,0,0,0) 70%);
+            z-index: 0;
+        }
     </style>
 </head>
 <body class="bg-dark text-light font-sans">
@@ -100,7 +157,9 @@
         <div class="text-3xl font-semibold text-white">TuniFlix</div>
         <div class="hidden lg:flex space-x-8 items-center">
             <a href="#" class="nav-link text-gray-medium hover:text-light transition-colors duration-300 text-sm">Home</a>
-        
+            <a href="#features" class="nav-link text-gray-medium hover:text-light transition-colors duration-300 text-sm">Features</a>
+            <a href="#app" class="nav-link text-gray-medium hover:text-light transition-colors duration-300 text-sm">App</a>
+            <a href="#download" class="nav-link text-gray-medium hover:text-light transition-colors duration-300 text-sm">Download</a>
         </div>
         <button class="lg:hidden text-gray-light">
             <i class="fas fa-bars text-xl"></i>
@@ -115,96 +174,156 @@
                 <span class="gradient-text">Ad Free, Forever.</span>
             </h1>
             <p class="text-xl md:text-2xl text-gray-medium mb-10 max-w-3xl mx-auto">
-                The best of global and local content.
+                Stream your favorite Tunisian and international content without interruptions.
             </p>
             <div class="flex flex-col sm:flex-row justify-center gap-4">
-               
-                <a href="https://github.com/YASSINE-AA/TuniFlix/releases/download/v1.0.2/TuniFlix.Setup.1.0.0.exe" class="bg-primary hover:bg-[#FF453A] text-white px-8 py-4 rounded-full font-medium text-lg flex items-center justify-center gap-2 transition-colors duration-300">
+                <a href="#download" class="bg-primary hover:bg-[#FF453A] text-white px-8 py-4 rounded-full font-medium text-lg flex items-center justify-center gap-2 transition-colors duration-300">
+                    <i class="fas fa-play"></i> Start Watching
+                </a>
+                <a href="https://github.com/YASSINE-AA/TuniFlix/releases/download/v1.0.2/TuniFlix.Setup.1.0.0.exe" class="bg-transparent hover:bg-gray-dark/50 text-white px-8 py-4 rounded-full font-medium text-lg flex items-center justify-center gap-2 transition-colors duration-300 border border-gray-medium">
                     <i class="fas fa-download"></i> Download
                 </a>
-             
             </div>
         </div>
         
         <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-            <div class="w-6 h-10 border-2 border-gray-medium rounded-full flex justify-center">
+            <a href="#features" class="w-6 h-10 border-2 border-gray-medium rounded-full flex justify-center">
                 <div class="w-1 h-2 bg-gray-medium rounded-full mt-2"></div>
-            </div>
+            </a>
         </div>
     </section>
 
-
-    <section class="py-32 px-6 lg:px-12 bg-dark">
-        <div class="container mx-auto max-w-5xl">
+    <section id="features" class="py-32 px-6 lg:px-12 bg-dark">
+        <div class="container mx-auto max-w-6xl">
             <h2 class="text-4xl md:text-5xl lg:text-6xl font-semibold text-center mb-20 tracking-tight">
-                Why <span class="gradient-text">TuniFlix</span> stands out.
+                Premium <span class="gradient-text">Features</span>
             </h2>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-              
-                <div class="glass-card p-8 rounded-2xl transition-all duration-500 hover:bg-gray-dark/60">
-                    <div class="text-primary text-4xl mb-6">
-                        <i class="fas fa-feather"></i>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="glass-card p-8 rounded-2xl transition-all duration-500 hover:bg-gray-dark/60 feature-card">
+                    <div class="text-primary text-4xl mb-6 glow">
+                        <i class="fas fa-bolt"></i>
                     </div>
-                    <h3 class="text-2xl font-semibold mb-4">Lightweight</h3>
+                    <h3 class="text-2xl font-semibold mb-4">Lightning Fast</h3>
                     <p class="text-gray-medium text-sm leading-relaxed">
-                        Lightweight client with profile selection.
+                        Optimized for speed with instant loading and seamless playback across all your devices.
                     </p>
                 </div>
                 
-  
-                <div class="glass-card p-8 rounded-2xl transition-all duration-500 hover:bg-gray-dark/60">
-                    <div class="text-primary text-4xl mb-6">
+                <div class="glass-card p-8 rounded-2xl transition-all duration-500 hover:bg-gray-dark/60 feature-card">
+                    <div class="text-primary text-4xl mb-6 glow">
                         <i class="fas fa-ad"></i>
                     </div>
-                    <h3 class="text-2xl font-semibold mb-4">Ad Free Playback</h3>
+                    <h3 class="text-2xl font-semibold mb-4">No Ads</h3>
                     <p class="text-gray-medium text-sm leading-relaxed">
-                        Ad free Playback for all Movies and TV Shows.
+                        Enjoy your favorite shows and movies without any annoying interruptions.
+                    </p>
+                </div>
+                
+                <div class="glass-card p-8 rounded-2xl transition-all duration-500 hover:bg-gray-dark/60 feature-card">
+                    <div class="text-primary text-4xl mb-6 glow">
+                        <i class="fas fa-film"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-4">Rich Library</h3>
+                    <p class="text-gray-medium text-sm leading-relaxed">
+                        Thousands of hours of TV Shows and Movies.
                     </p>
                 </div>
             </div>
         </div>
     </section>
 
+    <section id="app" class="app-section py-32 px-6 lg:px-12 bg-black relative">
+        <div class="app-bg"></div>
+        <div class="container mx-auto max-w-7xl relative z-10">
+            <div class="text-center mb-20">
+                <h2 class="text-4xl md:text-5xl lg:text-6xl font-semibold mb-6 tracking-tight">
+                    Experience the <span class="gradient-text">TuniFlix App</span>
+                </h2>
+                <p class="text-xl text-gray-medium max-w-3xl mx-auto">
+                    Beautifully designed interface that makes streaming effortless
+                </p>
+            </div>
+            
+            <div class="app-showcase">
+                <img src="capture.gif" alt="TuniFlix App Interface" class="w-full h-auto">
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-20">
+                <div class="text-center">
+                    <div class="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-mobile-alt text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Responsive Design</h3>
+                    <p class="text-gray-medium">Looks great on any device from phones to TVs</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-tachometer-alt text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Lightweight</h3>
+                    <p class="text-gray-medium">Fast performance even on older devices</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-user-friends text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Multiple Profiles</h3>
+                    <p class="text-gray-medium">Personalized experience for each user</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <section class="py-32 px-6 lg:px-12 bg-black">
+    <section id="download" class="py-32 px-6 lg:px-12 bg-gradient-to-b from-black to-gray-dark">
         <div class="container mx-auto max-w-6xl">
             <div class="flex flex-col lg:flex-row items-center justify-between gap-32">
-                <div>  <h2 class="text-4xl md:text-5xl font-semibold mb-8 tracking-tight">
-                        Start Watching<br>
-                        <span class="gradient-text">No Interruptions.</span>
+                <div class="lg:w-1/2">
+                    <h2 class="text-4xl md:text-5xl font-semibold mb-8 tracking-tight">
+                        Ready to experience<br>
+                        <span class="gradient-text">premium streaming?</span>
                     </h2>
                     <p class="text-gray-medium text-lg mb-10 leading-relaxed">
-                        Tired of ads? Watch with no interruptions now!
-                    </p></div>
-                  
+                        Download TuniFlix now and start watching with no ads, no restrictions, just endless entertainment.
+                    </p>
+                    
                     <div class="flex flex-wrap gap-4">
-                      
-                        <a href="https://github.com/YASSINE-AA/TuniFlix/releases/download/v1.0.2/TuniFlix.Setup.1.0.0.exe" class="bg-transparent hover:bg-gray-dark/50 text-white px-6 py-3 rounded-full font-medium flex items-center gap-3 transition-colors duration-300 border border-gray-medium">
-                            <i class="fab fa-windows text-2xl"></i>
+                        <a href="https://github.com/YASSINE-AA/TuniFlix/releases/download/v1.0.2/TuniFlix.Setup.1.0.0.exe" class="bg-primary hover:bg-[#FF453A] text-white px-8 py-4 rounded-full font-medium text-lg flex items-center justify-center gap-3 transition-colors duration-300">
+                            <i class="fas fa-download text-2xl"></i>
                             <div class="text-left">
                                 <div class="text-xs">Download for</div>
-                                <div class="text-lg">Windows</div>
+                                <div class="text-xl">Windows</div>
+                            </div>
+                        </a>
+                        
+                        <a href="#" class="bg-transparent hover:bg-gray-dark/50 text-white px-6 py-3 rounded-full font-medium flex items-center gap-3 transition-colors duration-300 border border-gray-medium">
+                            <i class="fab fa-android text-2xl"></i>
+                            <div class="text-left">
+                                <div class="text-xs">Coming soon to</div>
+                                <div class="text-lg">Android</div>
                             </div>
                         </a>
                     </div>
                 </div>
                 
+                <div class="lg:w-1/2 relative">
+                    <div class="relative mx-auto w-full max-w-md">
+                        <div class="app-showcase animate-float">
+                            <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1025&q=80" alt="TuniFlix App" class="w-full h-auto">
+                        </div>
+                        <div class="absolute -z-10 w-full h-full bg-primary/10 rounded-3xl top-6 left-6 filter blur-2xl"></div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-
     <footer class="py-20 px-6 lg:px-12 bg-black border-t border-gray-dark/50">
-        <div class="container mx-auto max-w-6xl">
-       
-            
-                <div class="flex flex-col md:flex-row justify-between items-center">
-                    <p class="text-gray-medium text-sm mb-4 md:mb-0">
-                        Made with &lt;3 by Overflow
-                    </p>
-                    
-            </div>
-        </div>
+        <p class="text-gray-medium text-sm text-center">
+            Made with &lt;3 by Overflow
+        </p>
     </footer>
 </body>
 </html>
